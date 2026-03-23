@@ -3,15 +3,100 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, Shield, Users, Lock, Eye, Map as MapIcon, Sun, Crown, Star, Castle, Swords, Flame, X, Compass, Play } from 'lucide-react';
+import { BookOpen, Shield, Users, Lock, Eye, Map as MapIcon, Sun, Crown, Star, Castle, Swords, Flame, X, Compass, Play, UserCircle, Settings, Save } from 'lucide-react';
 import { story, levels, categories, characters, mapData } from './data';
 import Background from './components/Background';
 
 const iconMap: Record<string, any> = {
   Sun, Crown, Star, Castle, Swords, Shield, Flame
 };
+
+function AppHeader({ activeTab, setActiveTab }: { activeTab: string, setActiveTab: (t: string) => void }) {
+  return (
+    <header className="pt-16 pb-8 px-4 text-center relative">
+      <div className="flex justify-center mb-10 w-full max-w-3xl mx-auto">
+        <img 
+          src="https://ludt.uk/63/asset/dead_hero_title.webp" 
+          alt="용사는 죽었다" 
+          className="w-full h-auto object-contain drop-shadow-2xl"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+      
+      {/* Navigation */}
+      <div className="w-full overflow-hidden">
+        <nav className="flex flex-nowrap items-center justify-start md:justify-center gap-3 md:gap-4 w-full max-w-5xl mx-auto overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 custom-scrollbar touch-pan-x">
+          {[
+            { id: 'intro', label: '인트로', icon: Play },
+            { id: 'story', label: '배경 이야기', icon: BookOpen },
+            { id: 'map', label: '제국 지도', icon: MapIcon },
+            { id: 'levels', label: '전투력 등급', icon: Shield },
+            { id: 'characters', label: '등장인물', icon: Users }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-5 md:px-6 py-3 font-serif transition-all duration-300 glass-panel whitespace-nowrap shrink-0 ${
+                activeTab === tab.id 
+                  ? 'text-primary font-bold ring-2 ring-primary shadow-lg shadow-primary/40 scale-105' 
+                  : 'text-gray-500 hover:text-gray-800 hover:-translate-y-1 opacity-80 hover:opacity-100'
+              }`}
+            >
+              <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : ''}`} />
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function TruthSection() {
+  const [unlocked, setUnlocked] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputValue.trim() === '아샤') {
+      setUnlocked(true);
+    } else {
+      alert('이름이 틀렸습니다.');
+      setInputValue('');
+    }
+  };
+
+  if (!unlocked) {
+    return (
+      <section className="glass-panel p-8 md:p-12 rounded-2xl border-l-4 border-l-accent flex flex-col items-center text-center">
+        <Lock className="w-8 h-8 text-accent mb-4" />
+        <h2 className="text-2xl font-serif text-accent mb-4">감춰진 진실</h2>
+        <p className="text-gray-400 text-sm mb-6">스포일러 주의: 마왕의 이름을 입력해야 열람할 수 있습니다.</p>
+        <form onSubmit={handleUnlock} className="flex w-full max-w-xs gap-2">
+          <input 
+            type="text" 
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="마왕의 이름"
+            className="flex-1 bg-black/50 border border-white/10 rounded px-3 py-2 text-white focus:outline-none focus:border-accent"
+          />
+          <button type="submit" className="bg-accent/20 text-accent border border-accent/50 px-4 py-2 rounded hover:bg-accent/30 transition-colors">
+            확인
+          </button>
+        </form>
+      </section>
+    );
+  }
+
+  return (
+    <section className="glass-panel p-8 md:p-12 rounded-2xl border-l-4 border-l-accent bg-black/40">
+      <h2 className="text-2xl font-serif text-accent mb-6 border-b border-white/10 pb-4">감춰진 진실</h2>
+      <p className="text-gray-300 leading-loose whitespace-pre-wrap">{story.truth}</p>
+    </section>
+  );
+}
 
 function CharacterDetail({ char, isUnlocked, onUnlock }: { char: any, isUnlocked: boolean, onUnlock: () => void }) {
   const [inputValue, setInputValue] = useState('');
@@ -214,50 +299,6 @@ function CharactersView({ categories, characters, activeCategory, setActiveCateg
   );
 }
 
-function TruthSection() {
-  const [unlocked, setUnlocked] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-
-  const handleUnlock = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputValue.trim() === '아샤') {
-      setUnlocked(true);
-    } else {
-      alert('이름이 틀렸습니다.');
-      setInputValue('');
-    }
-  };
-
-  if (!unlocked) {
-    return (
-      <section className="glass-panel p-8 md:p-12 rounded-2xl border-l-4 border-l-accent flex flex-col items-center text-center">
-        <Lock className="w-8 h-8 text-accent mb-4" />
-        <h2 className="text-2xl font-serif text-accent mb-4">감춰진 진실</h2>
-        <p className="text-gray-400 text-sm mb-6">스포일러 주의: 마왕의 이름을 입력해야 열람할 수 있습니다.</p>
-        <form onSubmit={handleUnlock} className="flex w-full max-w-xs gap-2">
-          <input 
-            type="text" 
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="마왕의 이름"
-            className="flex-1 bg-black/50 border border-white/10 rounded px-3 py-2 text-white focus:outline-none focus:border-accent"
-          />
-          <button type="submit" className="bg-accent/20 text-accent border border-accent/50 px-4 py-2 rounded hover:bg-accent/30 transition-colors">
-            확인
-          </button>
-        </form>
-      </section>
-    );
-  }
-
-  return (
-    <section className="glass-panel p-8 md:p-12 rounded-2xl border-l-4 border-l-accent">
-      <h2 className="text-2xl font-serif text-accent mb-6 border-b border-white/10 pb-4">감춰진 진실</h2>
-      <p className="text-gray-300 leading-loose whitespace-pre-wrap">{story.truth}</p>
-    </section>
-  );
-}
-
 function MapView() {
   const [selectedCity, setSelectedCity] = useState<any>(null);
 
@@ -275,34 +316,19 @@ function MapView() {
   return (
     <div className="flex flex-col gap-8">
       {/* Map Area */}
-      <div className="relative w-full aspect-square md:aspect-video bg-darker border border-white/10 rounded-2xl overflow-hidden shadow-2xl group cursor-crosshair">
-        {/* Terrain Background Simulation */}
-        <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/fantasymapterrain/1000/1000?grayscale')] opacity-10 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,rgba(28,25,23,0.3)_100%)]" />
+      <div className="relative w-full aspect-square md:aspect-video bg-[#1c1917] border-2 border-[#d2b48c] rounded-2xl overflow-hidden shadow-2xl">
+        {/* Tactical UI Background */}
+        <div className="absolute inset-0 opacity-20" style={{ 
+          backgroundImage: 'radial-gradient(#d2b48c 1px, transparent 1px)', 
+          backgroundSize: '20px 20px' 
+        }} />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
         
-        {/* Biome Overlays (Interactive Map Feel) */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ filter: 'blur(40px)' }}>
-          {/* Alterion Snow */}
-          <circle cx="75%" cy="20%" r="20%" fill="rgba(200, 220, 255, 0.15)" />
-          {/* Beringel Forest */}
-          <circle cx="65%" cy="70%" r="25%" fill="rgba(46, 139, 87, 0.15)" />
-          {/* Hart Mountains */}
-          <circle cx="25%" cy="50%" r="20%" fill="rgba(139, 69, 19, 0.15)" />
-          {/* Silvaren Plains */}
-          <circle cx="50%" cy="40%" r="25%" fill="rgba(218, 165, 32, 0.1)" />
-        </svg>
-
-        {/* Grid lines for tactical feel */}
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(28,25,23,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(28,25,23,0.05) 1px, transparent 1px)', backgroundSize: '5% 5%' }} />
-
-        {/* Routes / Roads */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
-          <path d="M 50% 45% L 75% 20%" stroke="rgba(28,25,23,0.2)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-          <path d="M 50% 45% L 65% 75%" stroke="rgba(28,25,23,0.2)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-          <path d="M 50% 45% L 25% 55%" stroke="rgba(28,25,23,0.2)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-          <path d="M 75% 20% L 75% 28%" stroke="rgba(28,25,23,0.2)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-        </svg>
-
+        {/* Compass Rose / Decorative UI */}
+        <div className="absolute bottom-6 right-6 opacity-10 pointer-events-none">
+          <Compass className="w-32 h-32 text-[#d2b48c]" />
+        </div>
+        
         {/* Map Points */}
         {mapData.map(city => (
           <button
@@ -311,7 +337,7 @@ function MapView() {
             className="absolute transform -translate-x-1/2 -translate-y-1/2 group flex items-center justify-center z-10"
             style={{ left: `${city.x}%`, top: `${city.y}%` }}
           >
-            <div className={`p-2 rounded-full border-2 transition-all duration-300 group-hover:scale-110 shadow-lg relative z-10 ${selectedCity?.id === city.id ? 'bg-primary border-white text-white scale-110' : 'bg-darker border-primary text-primary'}`}>
+            <div className={`p-2 rounded-full border-2 transition-all duration-300 group-hover:scale-110 shadow-lg relative z-10 ${selectedCity?.id === city.id ? 'bg-primary border-white text-white scale-110' : 'bg-black/60 border-primary text-primary'}`}>
               {getCityIcon(city.id)}
             </div>
             <span className={`absolute px-2 py-1 bg-black/80 border rounded text-xs font-serif whitespace-nowrap transition-colors ${
@@ -327,7 +353,7 @@ function MapView() {
       <AnimatePresence>
         {selectedCity && (
           <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
             onClick={() => setSelectedCity(null)}
           >
             <motion.div
@@ -398,48 +424,14 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('전체');
   const [selectedLevel, setSelectedLevel] = useState<any>(null);
 
-  const filteredCharacters = characters.filter(char => char.categories.includes(activeCategory));
-
   return (
     <div className="min-h-screen text-light selection:bg-primary/30 pb-24 relative">
       <Background />
-      {/* Header */}
-      <header className="pt-16 pb-8 px-4 text-center">
-        <div className="flex justify-center mb-10 w-full max-w-3xl mx-auto">
-          <img 
-            src="https://ludt.uk/63/asset/dead_hero_title.webp" 
-            alt="용사는 죽었다" 
-            className="w-full h-auto object-contain drop-shadow-2xl"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-        
-        {/* Navigation */}
-        <div className="w-full overflow-hidden">
-          <nav className="flex flex-nowrap items-center justify-start md:justify-center gap-3 md:gap-4 w-full max-w-5xl mx-auto overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 no-scrollbar touch-pan-x">
-            {[
-              { id: 'intro', label: '인트로', icon: Play },
-              { id: 'story', label: '배경 이야기', icon: BookOpen },
-              { id: 'map', label: '제국 지도', icon: MapIcon },
-              { id: 'levels', label: '전투력 등급', icon: Shield },
-              { id: 'characters', label: '등장인물', icon: Users }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-5 md:px-6 py-3 font-serif transition-all duration-300 glass-panel whitespace-nowrap shrink-0 ${
-                  activeTab === tab.id 
-                    ? 'text-primary font-bold ring-2 ring-primary shadow-lg shadow-primary/40 scale-105' 
-                    : 'text-gray-500 hover:text-gray-800 hover:-translate-y-1 opacity-80 hover:opacity-100'
-                }`}
-              >
-                <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : ''}`} />
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </header>
+      
+      <AppHeader 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+      />
 
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 mt-8">
@@ -461,7 +453,7 @@ export default function App() {
                     referrerPolicy="no-referrer"
                   />
                   <img 
-                    src="https://ludt.uk/63/asset/intro_02.webp?v=2" 
+                    src="https://ludt.uk/63/asset/intro_02.webp" 
                     alt="Intro 02" 
                     className="w-full h-auto"
                     referrerPolicy="no-referrer"

@@ -14,20 +14,20 @@ export const story = {
 타 종족과 달리 스스로 마나를 수련할 수 없어, 음식을 먹는 대신 타인의 마나를 강탈해야만 살아갈 수 있습니다.
 교활하고 생존을 위해 수단을 가리지 않으며 주로 단독으로 행동합니다.
 
-마족에게 모든 마나를 빼앗긴 자는 이성을 잃고 '마귀'로 변해버립니다.
-마귀는 뿔이 없으며, 언어를 상실한 채 좀비처럼 본능에 따라 타 종족을 습격해 마나를 탐냅니다.
-드물게 마귀화 대신 '마족화'가 진행되기도 하는데, 이는 번식이라기보다 감염에 가깝습니다.
-마족화된 자는 신체 능력과 지능이 비약적으로 상승하지만 도덕성을 완전히 상실하게 됩니다.`,
+마귀는 마족에게 마나를 빼앗겨 이성을 잃은 자들입니다.
+뿔이 없으며, 언어를 상실한 채 본능에 따라 타 종족을 습격합니다.
+드물게 마족화가 진행되기도 하는데, 이는 신체 능력은 상승하지만 도덕성을 상실하게 됩니다.`,
   empire: `루멘하임 제국은 빛의 신 '루멘'을 섬기는 루멘교를 국교로 삼고 있는 제정 국가입니다.
 마족들의 기습적인 습격으로 인해 현재 제국의 각 도시는 고립된 상태입니다.
-제국군이 대대적인 토벌에 나서려 하면 마족들은 교묘하게 자취를 감춰버립니다.
 
 제국의 중심에는 황도 '실바르엔'이 있으며, 신성도시 '알테리온', 마법도시 '베링겔', 요새도시 '하르트'가 제국을 지탱하고 있습니다.
 특히 알테리온의 대신전 지하에는 마왕이 봉인된 신역, '헬릭툼'이 자리 잡고 있습니다.`,
-  truth: `마족이 대륙을 침략한 것은 80년 전이 처음이 아니었습니다.
+  truth: `[ 은폐된 역사: 신을 죽인 자 ]
+마족이 대륙을 침략한 것은 80년 전이 처음이 아니었습니다.
 아주 오래전, 마왕 아샤는 세상을 수호하던 빛의 신 '루멘'을 살해하는 데는 성공했지만, 그 힘을 취하기 전에 연합군에 의해 마족과 함께 마대륙으로 쫓겨났습니다.
 신을 죽인 마왕의 존재는 역사에서 철저히 은폐되었고, 루멘교는 이 사실을 숨긴 채 거짓된 신앙을 이어왔던 것입니다.
 
+[ 용사의 선택: 유예된 심판 ]
 과거 용사 파티가 마왕을 봉인할 당시, 기절한 동료들 사이에서 홀로 남은 용사 에이든은 마왕의 진짜 목적을 알게 됩니다.
 마왕 아샤는 마족이 타인의 마나를 강탈해야만 살 수 있는 가혹한 종속성을 끊어내고자 했습니다.
 이를 위해 새로운 신이 되려 했던 것입니다.
@@ -55,7 +55,7 @@ export const characters = [
     features: "과거 용사 파티의 일원이었던 정령사.\n용사의 여동생으로 알려져 있다.\n제국 내 마족 최다 살해 기록을 보유하고 있다.",
     ambition: "용사의 마지막 판단 이해", quote: "마족이 하는 말에 귀 기울이지 말라구",
     categories: ['전체', '엘프', '용사파티', '생존'], isSub: false, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/A.webp"
+    imageUrl: "https://ludt.uk/63/A/101.webp"
   },
   {
     name: "카일라", rank: "나이트", role: "루멘교 성녀", race: "인간", age: "25살", gender: "여성",
@@ -63,7 +63,7 @@ export const characters = [
     features: "루멘교의 현 성녀.\n알테리온의 결계를 유지하고 있다.",
     ambition: "결계문제해결", quote: "저를 비난하셔도 좋아요.",
     categories: ['전체', '인간', '히로인', '생존'], isSub: false, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/B.webp"
+    imageUrl: "https://ludt.uk/63/B/101.webp"
   },
   {
     name: "그레텔", rank: "비숍", role: "방랑자", race: "인간형 마도인형", age: "90살", gender: "여성형",
@@ -71,7 +71,7 @@ export const characters = [
     features: "과거 용사 파티의 일원이었던 인간형 마도인형.\n대장장이 벨프가 제작했다.\n거대한 도끼를 무기로 사용한다.",
     ambition: "스스로가 사람이라 판단", quote: "인상이 흉악하니, 당신은 마족이군요!",
     categories: ['전체', '용사파티', '생존'], isSub: false, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/C.webp"
+    imageUrl: "https://ludt.uk/63/C/101.webp"
   },
   {
     name: "리히트", rank: "캐슬", role: "전사", race: "인간->마족", age: "102살", gender: "여성",
@@ -79,7 +79,7 @@ export const characters = [
     features: "과거 인간이었으나 마족화된 존재.\n단검술을 구사하며 봉인석 탈취를 시도하고 있다.",
     ambition: "마왕 봉인 해제 및 마왕 살해", quote: "마족? 난 그냥 가련한 아가씨인데?",
     categories: ['전체', '마족', '생존'], isSub: false, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/D.webp"
+    imageUrl: "https://ludt.uk/63/D/101.webp"
   },
   {
     name: "리마", rank: "캐슬", role: "제국 마법학회장", race: "인간", age: "25살", gender: "여성",
@@ -87,7 +87,7 @@ export const characters = [
     features: "제국 마법학회장.\n마왕 봉인 해제를 마법 연구를 위한 감수할 만한 위험으로 여긴다.",
     ambition: "마족의 마나 강탈을 모방", quote: "상식에서 벗어난 발상, 마음에 들어",
     categories: ['전체', '인간', '히로인', '생존'], isSub: false, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/E.webp"
+    imageUrl: "https://ludt.uk/63/E/101.webp"
   },
   {
     name: "피아", rank: "캐슬", role: "베링겔 백작", race: "인간", age: "24살", gender: "여성",
@@ -95,7 +95,7 @@ export const characters = [
     features: "베링겔 백작.\n철저한 실리주의자로 이익과 효율을 중시한다.",
     ambition: "마귀 치료법 개발", quote: "와오... 몸이 멋대로 나가버렸어.",
     categories: ['전체', '인간', '히로인', '생존'], isSub: false, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/F.webp"
+    imageUrl: "https://ludt.uk/63/F/101.webp"
   },
   {
     name: "아샤", rank: "킹", role: "마왕", race: "마족", age: "나이불명", gender: "여성",
@@ -103,7 +103,7 @@ export const characters = [
     features: "과거 대륙을 멸망 직전까지 몰고 갔던 마왕.\n현재 신역 헬릭툼에 봉인되어 있다.",
     ambition: "마족 운명 극복", quote: "운명을 벗어나기 위한 살생은 잘못인가요?",
     categories: ['전체', '마족', '생존'], isSub: false, isDemonKing: true, isDead: false,
-    imageUrl: "/characters/G.webp"
+    imageUrl: "https://ludt.uk/63/G/101.webp"
   },
   {
     name: "프리슬", rank: "비숍", role: "바드", race: "인간->마족", age: "불명", gender: "남성",
@@ -111,7 +111,7 @@ export const characters = [
     features: "과거 용사 파티의 일원이었던 바드.\n과거 인간이었으나 마족으로 되살아났다.\n모든 행동의 동기가 '재미'에 있다.",
     ambition: "", quote: "너 마음에 드는걸. 그렇게 나와야지!",
     categories: ['전체', '마족', '용사파티', '생존'], isSub: true, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/1.webp"
+    imageUrl: "https://ludt.uk/63/SC/1.webp"
   },
   {
     name: "레힘", rank: "캐슬", role: "마족", race: "마족", age: "불명", gender: "남성",
@@ -119,7 +119,7 @@ export const characters = [
     features: "대장장이 벨프를 살해하고\n황의 봉인석을 탈취한 마족.",
     ambition: "", quote: "제 무대에서 아름답게 춤추시길",
     categories: ['전체', '마족', '생존'], isSub: true, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/2.webp"
+    imageUrl: "https://ludt.uk/63/SC/2.webp"
   },
   {
     name: "자이르", rank: "비숍", role: "마족", race: "마족", age: "불명", gender: "남성",
@@ -127,7 +127,7 @@ export const characters = [
     features: "거구의 마족.\n마귀를 신체에 흡수해 싸운다.",
     ambition: "", quote: "평화에 찌든 나약한 놈들",
     categories: ['전체', '마족', '생존'], isSub: true, isDemonKing: false, isDead: false,
-    imageUrl: "/characters/3.webp"
+    imageUrl: "https://ludt.uk/63/SC/3.webp"
   },
   {
     name: "에이든", rank: "용사", role: "용사", race: "엘프", age: "사망 당시 불명", gender: "남성",
@@ -135,7 +135,7 @@ export const characters = [
     features: "과거 용사 파티를 이끌었던 전설적인 용사.\n평범한 모험가 출신이었으며,\n마왕을 봉인하고 순교한 그의 업적은 널리 구전되고 있다.",
     ambition: "", quote: "우리의 선택이 올바른 길로 이어지기를.",
     categories: ['전체', '엘프', '용사파티', '사망'], isSub: false, isDemonKing: false, isDead: true,
-    imageUrl: "/characters/4.webp"
+    imageUrl: "https://ludt.uk/63/SC/4.webp"
   },
   {
     name: "에스텔", rank: "성녀", role: "전대 성녀", race: "인간", age: "자연사", gender: "여성",
@@ -143,7 +143,7 @@ export const characters = [
     features: "과거 용사 파티의 일원이었던 루멘교의 전대 성녀.\n이타적인 성품으로 존경받았으며, 천수를 누리고 자연사했다.",
     ambition: "", quote: "빛이 우리를 인도할 것입니다.",
     categories: ['전체', '인간', '용사파티', '사망'], isSub: false, isDemonKing: false, isDead: true,
-    imageUrl: "/characters/5.webp"
+    imageUrl: "https://ludt.uk/63/SC/5.webp"
   },
   {
     name: "엘리아스", rank: "대현자", role: "대현자", race: "인간", age: "자연사", gender: "남성",
@@ -151,7 +151,7 @@ export const characters = [
     features: "과거 용사 파티의 일원이었던 대현자.\n리마와 피아의 조부이며, 천수를 누리고 자연사했다.",
     ambition: "", quote: "지식은 세상을 비추는 등불이지.",
     categories: ['전체', '인간', '용사파티', '사망'], isSub: false, isDemonKing: false, isDead: true,
-    imageUrl: "/characters/6.webp"
+    imageUrl: "https://ludt.uk/63/SC/6.webp"
   },
   {
     name: "벨프", rank: "대장장이", role: "대장장이", race: "드워프", age: "사망", gender: "남성",
@@ -159,7 +159,7 @@ export const characters = [
     features: "마도인형 그레텔의 제작자인 드워프 대장장이.\n마족 레힘에게 살해당했다.",
     ambition: "", quote: "내 망치질에 한 점 부끄럼은 없다!",
     categories: ['전체', '드워프', '사망'], isSub: false, isDemonKing: false, isDead: true,
-    imageUrl: "/characters/7.webp"
+    imageUrl: "https://ludt.uk/63/SC/7.webp"
   }
 ];
 

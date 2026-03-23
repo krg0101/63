@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Serif+KR:wght@300;400;600;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Serif KR", serif;
+  --font-serif: "Cinzel", "Noto Serif KR", serif;
+  
+  /* Inverted Theme for Bright JRPG */
+  --color-white: #1c1917; /* stone-800 (Dark text) */
+  --color-black: #ffffff; /* pure white (Light backgrounds) */
+  
+  /* Inverted Grays using Stone palette (shifted for better contrast) */
+  --color-gray-50: #0c0a09;
+  --color-gray-100: #1c1917;
+  --color-gray-200: #292524;
+  --color-gray-300: #44403c;
+  --color-gray-400: #57534e;
+  --color-gray-500: #78716c;
+  --color-gray-600: #a8a29e;
+  --color-gray-700: #d6d3d1;
+  --color-gray-800: #e7e5e4;
+  --color-gray-900: #f5f5f4;
+
+  /* JRPG Colors */
+  --color-primary: #2563eb; /* Royal Blue */
+  --color-primary-dark: #1d4ed8;
+  --color-accent: #dc2626; /* Classic Red */
+
+  /* Base Backgrounds */
+  --color-dark: #fdf6e3; /* Light Parchment */
+  --color-darker: #f4ecd8; /* Base Parchment */
+  --color-light: #1c1917; /* Ink Text */
+}
+
+body {
+  background-color: #000000;
+  color: var(--color-light);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+.glass-panel {
+  background: rgba(253, 246, 227, 0.9); /* Light parchment */
+  backdrop-filter: blur(10px);
+  border: 2px solid #d2b48c; /* Wood/leather border */
+  box-shadow: 4px 4px 0px rgba(139, 90, 43, 0.15); /* JRPG blocky shadow */
+  border-radius: 0.75rem;
+}
+
+.game-title {
+  font-family: var(--font-serif);
+  color: transparent;
+  background: linear-gradient(180deg, #fef08a 0%, #eab308 40%, #b91c1c 60%, #7f1d1d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 
+    0px 3px 3px rgba(0,0,0,0.8),
+    0px 6px 15px rgba(0,0,0,0.6),
+    0px 0px 20px rgba(220, 38, 38, 0.4);
+  letter-spacing: 0.15em;
+  position: relative;
+  display: inline-block;
+}
+
+.game-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background: none;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    -2px -2px 0 #450a0a,
+     2px -2px 0 #450a0a,
+    -2px  2px 0 #450a0a,
+     2px  2px 0 #450a0a,
+     0px  4px 0 #450a0a;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #1e3a8a, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
